@@ -1,0 +1,235 @@
+train: {
+  cuda_id: 0,
+  shuffled: true,
+  num_workers: 1,
+  enable_test_when_train: true,
+  epoch_interval_for_test: 10,
+  continue_to_train: false,
+  scheduler_step_size: 5, # 3, 10, 30
+  scheduler_gamma: 0.5,
+  net_type_list: [
+    'FCN2',
+    # 'LSTMClassification',
+    # 'LSTMClassification2',
+    # 'TSTransformer',
+    ],
+}
+
+args_dict: {
+  FCN: [
+    {
+      output_channel_list: [1, 128, 256, 128],
+      kernel_size_list: [2,2,2],
+      dropout: 0.2,
+      active_func: 'relu',
+      total_epoch: 2,
+      learning_rate: 0.01,
+    },
+  ],
+  FCN2: [
+    {
+      output_channel_list: [1, 128, 256, 128],
+      kernel_size_list: [2,2,2],
+      dropout: 0.3,
+      active_func: 'relu',
+      total_epoch: 30,
+      learning_rate: 0.01,
+    },
+  ],
+  LSTMClassification: [
+    {
+      hidden_dim: 256,
+      layers_num: 1,
+      dropout: 0.0,
+      total_epoch: 30,
+      learning_rate: 0.01,
+    },
+    # {
+    #   hidden_dim: 16,
+    #   layers_num: 2,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 32,
+    #   layers_num: 1,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 32,
+    #   layers_num: 2,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 64,
+    #   layers_num: 1,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 64,
+    #   layers_num: 2,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 128,
+    #   layers_num: 1,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 128,
+    #   layers_num: 2,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 256,
+    #   layers_num: 1,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 256,
+    #   layers_num: 2,
+    #   dropout: 0.2,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+  ],
+  LSTMClassification2: [
+    {
+      hidden_dim: 256,
+      layers_num: 1,
+      dropout: 0.0,
+      total_epoch: 30,
+      learning_rate: 0.01,
+    },
+    # {
+    #   hidden_dim: 128,
+    #   layers_num: 1,
+    #   dropout: 0.0,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 64,
+    #   layers_num: 1,
+    #   dropout: 0.0,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+    # {
+    #   hidden_dim: 32,
+    #   layers_num: 1,
+    #   dropout: 0.0,
+    #   total_epoch: 30,
+    #   learning_rate: 0.01,
+    # },
+  ],
+  TSTransformer: [
+    {
+      d_model: 32,
+      n_head: 16,
+      d_ffn: 256,
+      n_layers: 1, 
+      dropout: 0.2,
+      activation: 'relu',
+      total_epoch: 30,
+      learning_rate: 0.01,
+    },
+    {
+      d_model: 16,
+      n_head: 16,
+      d_ffn: 256,
+      n_layers: 1, 
+      dropout: 0.2,
+      activation: 'relu',
+      total_epoch: 30,
+      learning_rate: 0.01,
+    },
+    {
+      d_model: 16,
+      n_head: 8,
+      d_ffn: 256,
+      n_layers: 1, 
+      dropout: 0.2,
+      activation: 'relu',
+      total_epoch: 30,
+      learning_rate: 0.01,
+    },
+    {
+      d_model: 16,
+      n_head: 4,
+      d_ffn: 256,
+      n_layers: 1, 
+      dropout: 0.2,
+      activation: 'relu',
+      total_epoch: 30,
+      learning_rate: 0.01,
+    },
+    
+  ],
+
+  TCN: [
+    {
+      output_channel_list: [1],
+      kernel_size_list: [2,2,2],
+      dropout: 0.2,
+      total_epoch: 10,
+      learning_rate: 0.1,
+    },
+  ]
+}
+
+data_container: {
+  use_UEA_data: True,
+  data_dir: '/home/jianhao_dong/NN_weight_estimator/data/uea_data/Multivariate/UWaveGestureLibrary',
+  # data_dir: '/home/jianhao_dong/NN_weight_estimator/data/uea_data/Univariate/Adiac',
+  involved_columns: [],
+  ground_truth: 'ground_truth',
+  benchmark: 'ground_truth',
+
+  # data_dir : '/mnt/intel/jupyterhub/jianhao.dong/data/dynamic_model/orgnized_traction_data',
+  # data_dir : '/mnt/intel/jupyterhub/jianhao.dong/data/dynamic_model_mini/orgnized_traction_data',
+  # data_dir : '/mnt/intel/jupyterhub/jianhao.dong/data/weight_estimation_mini/orgnized_traction_data',
+  # data_dir : '/home/jianhao_dong/NN_weight_estimator/data/weight_estimation_mini/orgnized_traction_data',
+  # involved_columns: ['a_report','pitch_pose','yaw_rate','traction','v_current_dbw','steering_angle'],
+  # ground_truth: 'weight',
+  # benchmark: 'weight',
+  gt_offset: 0.0,
+  step: 0.2,                          # second
+  sequence_duration: 2,              # second
+  frequency: 20,
+  batch_size: 128,   # 1, 2, 8, 32, 256
+  train_data_percentage: 0.5,
+  train_data_first: true,
+  data_range: [0, 30000],
+  normalized: true,
+  sample_time: 0.05,
+  classification: true,
+  classification_range: [0,50],
+  classification_interval: 2,
+}
+
+plot: {
+  epoch_interval_for_result: 10,
+  loss_fig_width: 19,
+  loss_fig_height: 12,
+  loss_fig_zoom: 1,
+  comparison_fig_height: 300,
+  vertical_spacig: 0.02,
+  figure_with_loss: false,
+  plot_benchmark: false
+}

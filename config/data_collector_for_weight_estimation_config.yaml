@@ -1,0 +1,41 @@
+vehicle_param: {
+  gravity_acceleration: 9.8,
+  axle_drive_ratio: 2.714,
+  max_throttle_engine_torque: 3125,
+  transmission_efficiency: 0.95,
+  effective_tire_radius: 0.5,
+  inertia_wheels: 60.0,
+  inertia_engine: 4.0,
+  drag_coefficient: 0.8,
+  vehicle_frontal_area: 8.0,
+  air_density: 1.225,
+  rolling_friction_coefficient: 0.006,
+  sample_time: 0.05
+}
+
+query_step: 1
+de_sample: 5
+signal_fig_height: 300
+vertical_spacig: 0.02
+query_delta_time: 5 # minutes
+save_delta_time: 2 # hours
+train_percentage: 0.8
+test_percentage: 0.1
+file_num_for_one_weight: 5
+vehciles : [
+  # 'pdb-l4e-b0002',
+  # 'pdb-l4e-b0003',
+  # 'pdb-l4e-b0004',
+  # 'pdb-l4e-b0005',
+  # 'pdb-l4e-b0006',
+  # 'pdb-l4e-b0007',
+  'pdb-l4e-b0008',
+  'pdb-l4e-c0001',
+  # 'pdc-l4e-a0001',
+  # 'pdc-l4e-a0002',
+  # 'pdc-l4e-a0003',
+]
+
+time_intervals : [
+                  ['2023-09-10 23:00:00', '2023-09-15 23:59:59'],
+                  ]
