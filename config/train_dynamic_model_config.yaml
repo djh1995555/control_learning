@@ -1,0 +1,65 @@
+train: {
+  cuda_id: 0,
+  shuffled: true,
+  num_workers: 1,
+  continue_to_train: false,
+  scheduler_step_size: 2, # 3, 10, 30
+  scheduler_gamma: 0.5,
+  net_type: 'LSTM',
+  FFNN_args: {
+    output_dim: 1,
+    dim_list: [1024,  256,  64],
+    total_epoch: 100,
+    learning_rate: 0.01
+  },
+  LSTM_args: {
+    hidden_dim: 256,
+    num_layers: 1,
+    out_dim: 1,
+    total_epoch: 10,
+    learning_rate: 0.001
+  },
+  GRU_args: {
+    hidden_dim: 256,
+    num_layers: 1,
+    out_dim: 1,
+    total_epoch: 10,
+    learning_rate: 0.001
+  },
+  WRNN_args: {
+    hidden_dim: 16,
+    out_dim: 1,
+    total_epoch: 20,
+    learning_rate: 0.001
+  }
+}
+
+data_loader: {
+  # data_dir : 'dynamic_model/test_data/orgnized_traction_data',
+  data_dir : 'dynamic_model_b8_mini/orgnized_traction_data',
+  ground_truth: 'a_report',
+  benchmark: 'benchmark',
+  gt_offset: 1.0,
+  drop_columns: ['benchmark'],
+  step: 0.2,                          # second
+  sequence_duration: 2,              # second
+  frequency: 20,
+  train_batch_num: 8,   # 1, 2, 8, 32, 256
+  test_batch_num: 8,
+  train_data_percentage: 0.5,
+  train_data_first: true,
+  data_range: [0, 30000],
+  normalized: true,
+  sample_time: 0.05
+}
+
+plot: {
+  epoch_num_interval: 10,
+  loss_fig_width: 19,
+  loss_fig_height: 12,
+  loss_fig_zoom: 1,
+  comparison_fig_height: 300,
+  vertical_spacig: 0.02,
+  figure_with_loss: false,
+  plot_benchmark: true
+}

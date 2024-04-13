@@ -1,0 +1,17 @@
+vehicle_param: {
+  gravity_acceleration: 9.8,
+  axle_drive_ratio: 2.714,
+  max_throttle_engine_torque: 3125,
+  transmission_efficiency: 0.95,
+  effective_tire_radius: 0.5,
+  inertia_wheels: 60.0,
+  inertia_engine: 4.0,
+  drag_coefficient: 0.8,
+  vehicle_frontal_area: 8.0,
+  air_density: 1.225,
+  rolling_friction_coefficient: 0.006,
+  sample_time: 0.05
+}
+
+init_v: 20
+time_range: 500
